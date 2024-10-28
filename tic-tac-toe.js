@@ -1,26 +1,35 @@
 document.addEventListener('DOMContentLoaded', () => {
     const squares = document.querySelectorAll('#board div');
     let currentPlayer = 'X';
+    let gameOver = false; // Flag to track if the game is over
 
+    // Add 'square' class to each board div
     squares.forEach(square => square.classList.add('square'));
 
+    // Add click event for each square
     squares.forEach(square => {
         square.addEventListener('click', () => {
-            if (!square.textContent) {
+            if (!square.textContent && !gameOver) { // Only allow move if square is empty and game isn't over
                 square.textContent = currentPlayer;
                 square.classList.add(currentPlayer);
+
+                // Check if there's a winner
                 if (checkWinner()) {
                     document.getElementById('status').textContent = `Congratulations! ${currentPlayer} is the Winner!`;
                     document.getElementById('status').classList.add('you-won');
+                    gameOver = true; // Set game over to true to prevent further moves
+                } else {
+                    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
                 }
-                currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
             }
         });
 
+        // Hover effect
         square.addEventListener('mouseover', () => square.classList.add('hover'));
         square.addEventListener('mouseleave', () => square.classList.remove('hover'));
     });
 
+    // Check for winning combinations
     function checkWinner() {
         const winningCombinations = [
             [0, 1, 2], [3, 4, 5], [6, 7, 8],
@@ -36,17 +45,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const button = document.getElementById('.btn')
-        button.addEventListener('click', () => {
-            gameState.fill(null);
-            const squares = document.querySelectorAll('.square');
-            squares.forEach(square => {
-                square.textContent = '';      
-                square.classList.remove('X'); 
-                square.classList.remove('O'); 
+    // Reset game with "New Game" button
+    const button = document.querySelector('.btn'); // Corrected button selector
+    button.addEventListener('click', () => {
+        squares.forEach(square => {
+            square.textContent = ''; // Clear square content
+            square.classList.remove('X', 'O'); // Remove X and O classes
         });
         document.getElementById('status').textContent = 'Move your mouse over a square and click to play an X or an O.';
-        document.getElementById('status').classList.remove('you-won'); // Remove winner style
-        currentPlayer = 'X';  // Reset the current player to 'X'
+        document.getElementById('status').classList.remove('you-won'); // Reset winner style
+        currentPlayer = 'X'; // Reset to initial player
+        gameOver = false; // Reset game over status
     });
 });
