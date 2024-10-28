@@ -51,7 +51,14 @@ document.addEventListener('DOMContentLoaded', () => {
         squares.forEach(square => {
             square.textContent = ''; // Clear square content
             square.classList.remove('X', 'O'); // Remove X and O classes
+
+            squares.forEach(square => {
+                square.addEventListener('click', () => {
+                    if (!square.textContent && !gameOver) { // Only allow move if square is empty and game isn't over
+                    square.textContent = currentPlayer;
+                    square.classList.add(currentPlayer);
         });
+                
         document.getElementById('status').textContent = 'Move your mouse over a square and click to play an X or an O.';
         document.getElementById('status').classList.remove('you-won'); // Reset winner style
         currentPlayer = 'X'; // Reset to initial player
