@@ -1,38 +1,32 @@
 document.addEventListener('DOMContentLoaded', () => {
     const squares = document.querySelectorAll('#board div');
     let currentPlayer = 'X';
-    let gameOver = false; // Flag to prevent further moves after a win
+    let gameOver = false; 
 
-    // Apply the 'square' class to each board div
     squares.forEach(square => square.classList.add('square'));
 
-    // Set up the click event listener for each square
     squares.forEach(square => {
         square.addEventListener('click', () => {
-            // Only allow a move if the square is empty and the game isn't over
             if (!square.textContent && !gameOver) {
                 square.textContent = currentPlayer;
                 square.classList.add(currentPlayer);
                 
-                // Check for a winner after the move
                 if (checkWinner()) {
                     document.getElementById('status').textContent = `Congratulations! ${currentPlayer} is the Winner!`;
                     document.getElementById('status').classList.add('you-won');
-                    gameOver = true; // Set game over to prevent further moves
+                    gameOver = true; 
                 } else {
-                    currentPlayer = currentPlayer === 'X' ? 'O' : 'X'; // Toggle player
+                    currentPlayer = currentPlayer === 'X' ? 'O' : 'X'; 
                 }
             }
         });
 
-        // Hover effect for each square
         square.addEventListener('mouseover', () => {
             if (!square.textContent && !gameOver) square.classList.add('hover');
         });
         square.addEventListener('mouseleave', () => square.classList.remove('hover'));
     });
 
-    // Function to check for winning combinations
     function checkWinner() {
         const winningCombinations = [
             [0, 1, 2], [3, 4, 5], [6, 7, 8],
@@ -53,19 +47,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Reset the game when the "New Game" button is clicked
-    const button = document.querySelector('.btn'); // Use class selector for button
+    const button = document.querySelector('.btn'); 
     button.addEventListener('click', () => {
         squares.forEach(square => {
-            square.textContent = ''; // Clear each square's content
-            square.classList.remove('X', 'O'); // Remove any player class
+            square.textContent = ''; 
+            square.classList.remove('X', 'O'); 
         });
         
         document.getElementById('status').textContent = 'Move your mouse over a square and click to play an X or an O.';
-        document.getElementById('status').classList.remove('you-won'); // Remove winner style
-        currentPlayer = 'X'; // Reset to starting player
-        gameOver = false; // Reset game state to allow moves again
+        document.getElementById('status').classList.remove('you-won'); 
+        currentPlayer = 'X'; 
+        gameOver = false; 
 
-        console.log("Game has been reset"); // Debug log to confirm reset
+        console.log("Game has been reset"); 
     });
 });
