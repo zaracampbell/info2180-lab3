@@ -21,26 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
         square.addEventListener('mouseleave', () => square.classList.remove('hover'));
     });
 
-    const newGameButton = document.querySelector('.btn');
-    if (newGameButton) {
-        newGameButton.addEventListener('click', () => {
-            squares.forEach(square => {
-                square.textContent = '';
-                square.classList.remove('X', 'O');
-            });
-            document.getElementById('status').textContent = 'Move your mouse over a square and click to play an X or an O.';
-            document.getElementById('status').classList.remove('you-won');
-            currentPlayer = 'X';
-        });
-    }
-});
-
-        // Hover effect on squares
-        square.addEventListener('mouseover', () => square.classList.add('hover'));
-        square.addEventListener('mouseleave', () => square.classList.remove('hover'));
-    });
-
-    // Check for a winning combination
     function checkWinner() {
         const winningCombinations = [
             [0, 1, 2], [3, 4, 5], [6, 7, 8],
@@ -56,21 +36,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    
-    const newGameButton = document.getElementById('new-game');
-        newGameButton.addEventListener("click", () => {
-            console.log("New Game button clicked"); 
-            squares.forEach(square => {
-                square.textContent = '';      
-                square.classList.remove('X'); 
-                square.classList.remove('O'); 
-            });
-            document.getElementById('status').textContent = 'Move your mouse over a square and click to play an X or an O.';
-            document.getElementById('status').classList.remove('you-won'); // Remove winner style
-            currentPlayer = 'X';  // Reset the current player to 'X'
-            console.log("Game board reset"); // Debug message
+    // Updated New Game button event to fully reset the game
+    document.getElementById('new-game').addEventListener('click', () => {
+        squares.forEach(square => {
+            square.textContent = '';      // Clear text content
+            square.classList.remove('X'); // Remove X class
+            square.classList.remove('O'); // Remove O class
         });
-    } else {
-        console.log("New Game button not found"); // Error message if button not found
-    }
+        document.getElementById('status').textContent = 'Move your mouse over a square and click to play an X or an O.';
+        document.getElementById('status').classList.remove('you-won'); // Remove winner style
+        currentPlayer = 'X';  // Reset the current player to 'X'
+    });
 });
