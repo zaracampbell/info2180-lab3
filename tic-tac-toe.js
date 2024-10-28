@@ -40,15 +40,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // New Game button: reset the game
+    
     const newGameButton = document.getElementById('new-game');
-    if (newGameButton) { // Check if the button is correctly selected
-        newGameButton.addEventListener('click', () => {
-            console.log("New Game button clicked"); // Debug message
+        newGameButton.addEventListener("click", () => {
+            console.log("New Game button clicked"); 
             squares.forEach(square => {
-                square.textContent = '';      // Clear text content
-                square.classList.remove('X'); // Remove X class
-                square.classList.remove('O'); // Remove O class
+                square.textContent = '';      
+                square.classList.remove('X'); 
+                square.classList.remove('O'); 
             });
             document.getElementById('status').textContent = 'Move your mouse over a square and click to play an X or an O.';
             document.getElementById('status').classList.remove('you-won'); // Remove winner style
