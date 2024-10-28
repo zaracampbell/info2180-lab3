@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const squares = document.querySelectorAll('#board div');
     let currentPlayer = 'X';
-    let gameOver = false; // Flag to track if the game is over
+    let gameOver = true; // Flag to track if the game is over
 
     // Add 'square' class to each board div
     squares.forEach(square => square.classList.add('square'));
