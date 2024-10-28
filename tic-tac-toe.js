@@ -15,9 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Check if there's a winner
                 if (checkWinner()) {
-                    document.getElementById('status').textContent = Congratulations! ${currentPlayer} is the Winner!;
+                    document.getElementById('status').textContent = `Congratulations! ${currentPlayer} is the Winner!`;
                     document.getElementById('status').classList.add('you-won');
-                    gameOver = false; // Set game over to true to prevent further moves
+                    gameOver = true; // Set game over to prevent further moves
                 } else {
                     currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
                 }
@@ -25,7 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Hover effect
-        square.addEventListener('mouseover', () => square.classList.add('hover'));
+        square.addEventListener('mouseover', () => {
+            if (!square.textContent && !gameOver) square.classList.add('hover');
+        });
         square.addEventListener('mouseleave', () => square.classList.remove('hover'));
     });
 
@@ -38,7 +40,11 @@ document.addEventListener('DOMContentLoaded', () => {
         ];
         return winningCombinations.some(combo => {
             const [a, b, c] = combo;
-            if (squares[a].textContent && squares[a].textContent === squares[b].textContent && squares[a].textContent === squares[c].textContent) {
+            if (
+                squares[a].textContent &&
+                squares[a].textContent === squares[b].textContent &&
+                squares[a].textContent === squares[c].textContent
+            ) {
                 return true;
             }
             return false;
@@ -55,6 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('status').textContent = 'Move your mouse over a square and click to play an X or an O.';
         document.getElementById('status').classList.remove('you-won'); // Reset winner style
         currentPlayer = 'X'; // Reset to initial player
-        gameOver = true; // Reset game over status
+        gameOver = false; // Allow new moves for a new game
     });
 });
