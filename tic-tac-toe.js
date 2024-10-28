@@ -36,3 +36,12 @@ function checkWinner() {
     }
     return false;
 }
+document.getElementById('new-game').addEventListener('click', () => {
+    document.querySelectorAll('#board .square').forEach(square => {
+        square.textContent = '';
+        square.classList.remove('X', 'O');
+    });
+    document.getElementById('status').textContent = 'Move your mouse over a square and click to play an X or an O.';
+    document.getElementById('status').classList.remove('you-won');
+    currentPlayer = 'X';
+});
