@@ -14,3 +14,7 @@ document.querySelectorAll('#board .square').forEach(square => {
         }
     });
 });
+document.querySelectorAll('#board .square').forEach(square => {
+    square.addEventListener('mouseover', () => square.classList.add('hover'));
+    square.addEventListener('mouseleave', () => square.classList.remove('hover'));
+});
