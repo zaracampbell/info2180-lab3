@@ -55,6 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('status').textContent = 'Move your mouse over a square and click to play an X or an O.';
         document.getElementById('status').classList.remove('you-won'); // Reset winner style
         currentPlayer = 'X'; // Reset to initial player
-        gameOver = false; // Reset game over status
+        gameOver = true; // Reset game over status
     });
 });
