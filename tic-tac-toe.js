@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Check if there's a winner
                 if (checkWinner()) {
-                    document.getElementById('status').textContent = `Congratulations! ${currentPlayer} is the Winner!`;
+                    document.getElementById('status').textContent = Congratulations! ${currentPlayer} is the Winner!;
                     document.getElementById('status').classList.add('you-won');
                     gameOver = false; // Set game over to true to prevent further moves
                 } else {
@@ -52,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
             square.textContent = ''; // Clear square content
             square.classList.remove('X', 'O'); // Remove X and O classes
         });
-
         document.getElementById('status').textContent = 'Move your mouse over a square and click to play an X or an O.';
         document.getElementById('status').classList.remove('you-won'); // Reset winner style
         currentPlayer = 'X'; // Reset to initial player
