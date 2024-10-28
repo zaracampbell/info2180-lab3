@@ -36,12 +36,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Updated New Game button event to fully reset the game
-    document.getElementById('.btn').addEventListener('click', () => {
-        squares.forEach(square => {
-            square.textContent = '';      // Clear text content
-            square.classList.remove('X'); // Remove X class
-            square.classList.remove('O'); // Remove O class
+    const button = document.getElementById('.btn')
+        button.addEventListener('click', () => {
+            gameState.fill(null);
+            const squares = document.querySelectorAll('.square');
+            squares.forEach(square => {
+                square.textContent = '';      
+                square.classList.remove('X'); 
+                square.classList.remove('O'); 
         });
         document.getElementById('status').textContent = 'Move your mouse over a square and click to play an X or an O.';
         document.getElementById('status').classList.remove('you-won'); // Remove winner style
