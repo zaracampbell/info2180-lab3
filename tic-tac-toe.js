@@ -2,13 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const squares = document.querySelectorAll('#board div');
     let currentPlayer = 'X';
 
-    // Apply initial 'square' class to each square
     squares.forEach(square => square.classList.add('square'));
 
-    // Click event for each square to mark X or O
     squares.forEach(square => {
         square.addEventListener('click', () => {
-            if (!square.textContent) { // Only allow marking if square is empty
+            if (!square.textContent) {
                 square.textContent = currentPlayer;
                 square.classList.add(currentPlayer);
                 if (checkWinner()) {
@@ -18,6 +16,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
             }
         });
+
+        square.addEventListener('mouseover', () => square.classList.add('hover'));
+        square.addEventListener('mouseleave', () => square.classList.remove('hover'));
+    });
+
+    const newGameButton = document.querySelector('.btn');
+    if (newGameButton) {
+        newGameButton.addEventListener('click', () => {
+            squares.forEach(square => {
+                square.textContent = '';
+                square.classList.remove('X', 'O');
+            });
+            document.getElementById('status').textContent = 'Move your mouse over a square and click to play an X or an O.';
+            document.getElementById('status').classList.remove('you-won');
+            currentPlayer = 'X';
+        });
+    }
+});
 
         // Hover effect on squares
         square.addEventListener('mouseover', () => square.classList.add('hover'));
