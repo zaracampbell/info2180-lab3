@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (checkWinner()) {
                     document.getElementById('status').textContent = `Congratulations! ${currentPlayer} is the Winner!`;
                     document.getElementById('status').classList.add('you-won');
-                    gameOver = true; // Set game over to true to prevent further moves
+                    gameOver = false; // Set game over to true to prevent further moves
                 } else {
                     currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
                 }
