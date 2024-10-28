@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const squares = document.querySelectorAll('#board div');
     let currentPlayer = 'X';
-    let gameOver = false; // Flag to track if the game is over
+    let gameOver = false; // Ensure game starts with gameOver set to false
 
     // Add 'square' class to each board div
     squares.forEach(square => square.classList.add('square'));
@@ -52,15 +52,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Reset game with "New Game" button
-    const button = document.querySelector('.btn'); // Corrected button selector
+    const button = document.querySelector('.btn'); // Use class selector for button
     button.addEventListener('click', () => {
         squares.forEach(square => {
-            square.textContent = ''; // Clear square content
-            square.classList.remove('X', 'O'); // Remove X and O classes
+            square.textContent = ''; // Clear each square's content
+            square.classList.remove('X', 'O'); // Remove any player class
         });
         document.getElementById('status').textContent = 'Move your mouse over a square and click to play an X or an O.';
-        document.getElementById('status').classList.remove('you-won'); // Reset winner style
-        currentPlayer = 'X'; // Reset to initial player
+        document.getElementById('status').classList.remove('you-won'); // Remove winner style
+        currentPlayer = 'X'; // Reset to starting player
         gameOver = false; // Allow new moves for a new game
+
+        console.log("Game has been reset"); // Debug log to confirm reset
     });
 });
